@@ -33,6 +33,12 @@ func main() {
 			Value:       "http://localhost:9090",
 			Destination: &flag.Prometheus,
 		},
+		cli.IntFlag{
+			Name:        "step",
+			Usage:       "specify step to calculate the samples in seconds",
+			Value:       10,
+			Destination: &flag.Step,
+		},
 	}
 
 	app.Commands = []cli.Command{{
@@ -88,6 +94,7 @@ func main() {
 
 type flags struct {
 	Duration   time.Duration
+	Step       int
 	Header     bool
 	Prometheus string
 }

@@ -84,6 +84,11 @@ func Query(host string, start time.Time, end time.Time, query string) ([]Result,
 }
 
 func steps(dur time.Duration) int {
+	// skip step calculation if flag is set
+	if flag.Step > 0 {
+		return flag.Step
+	}
+
 	if dur < 15*time.Minute {
 		return 1
 	}
